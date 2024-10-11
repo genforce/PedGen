@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+
+
+<!-- === Header Starts === -->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>PedGen</title>
+
+  <link href="./assets/bootstrap.min.css" rel="stylesheet">
+  <link href="./assets/font.css" rel="stylesheet" type="text/css">
+  <link href="./assets/style.css" rel="stylesheet" type="text/css">
+</head>
+<!-- === Header Ends === -->
+
+
+<body>
+
+
+<!-- === Home Section Starts === -->
+<div class="section">
+  <!-- === Title Starts === -->
+  <div class="header">
+    <div class="logo">
+      <a href="https://genforce.github.io/" target="_blank"><img src="./assets/genforce.png"></a>
+    </div>
+    <div class="title", style="padding-top: 25pt;">  <!-- Set padding as 10 if title is with two lines. -->
+      Learning to Generate Diverse Pedestrian Movements from Web Videos with Noisy Labels
+    </div>
+  </div>
+  <!-- === Title Ends === -->
+  <div class="author">
+    <a href="https://scholar.google.com/citations?user=Asc7j9oAAAAJ&hl=en" target="_blank">Zhizheng Liu</a>&nbsp;
+    <a href="https://github.com/joe-lin-tech" target="_blank">Joe Lin</a>&nbsp;
+    <a href="https://wywu.github.io/" target="_blank">Wayne Wu</a>&nbsp;
+    <a href="https://boleizhou.github.io/" target="_blank">Bolei Zhou</a>
+  </div>
+  <div class="institution">
+    University of California, Los Angeles
+  </div>
+  <div class="link">
+    <a href="https://arxiv.org/abs/2410.07500" target="_blank">[Paper]</a>&nbsp;
+    <a href="https://github.com/genforce/PedGen" target="_blank">[Code]</a>
+  </div>
+  <div style="position: relative; padding-top: 56.25%; margin: 20pt 0; text-align: center;">
+    <video autoplay muted playsinline controls loop style="position: absolute; top: 0%; left: 0%; width: 100%; height: 100%;">
+        <source src="assets/teaser_new.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+ 
+</div>
+<!-- === Home Section Ends === -->
+
+
+<!-- === Overview Section Starts === -->
+
+<div class="section">
+  <div class="title">Overview</div>
+  <div class="body">
+    We address a new task of <i>context-aware</i> pedestrian movement
+    generation from web videos, which has crucial appications like motion forecasting and scene simulation.
+    To support the task, we curate a new <i>large-scale</i> real-world pedestrian movement dataset <b>CityWalkers</b> with
+    pseduo-labels of diverse pedestrian movements and motion contexts.
+    We further propose a context-aware generative model <b>PedGen</b> that deals with label noises and models various
+    motion contexts to generate diverse pedestrian movements. 
+    We hope this study will present new opportunities and facilitate future research on modeling pedestrian movements in real-world settings.
+  </div>
+</div>
+<!-- === Overview Section Starts === -->
+
+<!-- === Overview Section Starts === -->
+
+
+<div class="section">
+  <div class="title">CityWalkers: Capturing Diverse Real-World Pedestrian Movements</div>
+  <div class="body">
+    Existing human motion datasets rarely capture natural pedestrian movements, lack diversity in scenes and human subjects, 
+    and do not provide the critical context factors of pedestrian movements, such as <i>surrounding environments, individual characteristics, 
+    and route destinations</i>. To support the task of context-aware pedestrian movement generation, we construct CityWalkers, 
+    a large-scale dataset with real-world pedestrian movements in diverse urban environments annotated by pseudo-labeling techniques.
+    Our data source consists of 30.8 hours of high-quality web videos of walking in cities worldwide posted by content creators on YouTube, including 120,914
+    pedestrians and 16,215 scenes across 227 cities and 49 countries, making it the most diverse human
+    motion dataset regarding scene context and human subjects.
+  </div>
+  <table width="100%" style="margin: 20pt 0; text-align: center;">
+    <tr>
+      <td><img src="assets/dataset.jpg" width="100%"></td>
+    </tr>
+  </table>
+
+  <div style="position: relative; padding-top: 56.25%; margin: 20pt 0; text-align: center;">
+    <video autoplay muted playsinline controls loop style="position: absolute; top: 0%; left: 0%; width: 100%; height: 100%;">
+        <source src="assets/teaser_2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+ 
+</div>
+
+
+<div class="section"> 
+  <div class="title">PedGen: Generating Context-Aware Pedestrian Movements</div>
+  <div class="body">
+    PedGen is a diffusion-based generative model and the first
+    method for the new task of context-aware pedestrian movement generation.
+    To mitigate the anomaly and incomplete labels from pseudo-labeling techniques, PedGen adopts a data iteration strategy to identify and remove low-quality labels from the dataset automatically and a motion mask embedding to train with partial labels.
+  To model the important context factors, PedGen considers the <i>surrounding environment, the individual characteristics, and the goal points</i> as input conditions to generate realistic and long-term pedestrian movements in urban scenes.
+  </div>
+  <table width="100%" style="margin: 20pt 0; text-align: center;">
+    <tr>
+      <td><img src="assets/method.jpg" width="100%"></td>
+    </tr>
+  </table>
+  
+ 
+</div>
+<!-- === Overview Section Ends === -->
+
+
+<!-- === Result Section Starts === -->
+<div class="section">
+  <div class="title">Results</div>
+  <div class="body">
+    First Row: Generation Results on CityWalkers. <br>
+    Second Row: <b>Zero-shot</b> Generation Results on the Waymo dataset. <br>
+    Thrid Row: <b>Zero-shot</b> Generation Results in simulated environments in CARLA.
+
+    <!-- Adjust the number of rows and columns (EVERY project differs). -->
+    <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="assets/qualitative_1.jpg" width="100%"></td>
+      </tr>
+    </table>
+
+    Video Qualitative Results:
+
+    <div style="position: relative; padding-top: 56.25%; margin: 20pt 0; text-align: center;">
+      <iframe src="assets/video_qualitative_results.mp4" frameborder=0
+              style="position: absolute; top: 0%; left: 0%; width: 100%; height: 100%;"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+
+  </div>
+</div>
+<!-- === Result Section Ends === -->
+<div class="section">
+  <div class="title">Application: Real-World Pedestrian Movment Forecasting</div>
+  PedGen can predict future movements of real-world pedestrians and combine the results with 3D Gaussian Splatting to render realstic predictions.
+
+  <div style="position: relative; padding-top: 56.25%; margin: 20pt 0; text-align: center;">
+    <video autoplay muted playsinline controls loop style="position: absolute; top: 0%; left: 0%; width: 100%; height: 100%;">
+        <source src="assets/waymo_demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+ 
+</div>
+</div>
+
+<div class="section">
+  <div class="title">Application: Populating Urban Scenes in Simulation</div>
+  PedGen can populate urban scenes with diverse and realistic pedestrian movements.
+  <div class="teaser">
+    <img src="assets/teaser.jpg">
+  </div>
+</div>
+
+<!-- === Reference Section Starts === -->
+<div class="section">
+  <div class="bibtex">BibTeX</div>
+<pre>
+  @article{liu2024learning,
+    title={Learning to Generate Diverse Pedestrian Movements from Web Videos with Noisy Labels},
+    author={Liu, Zhizheng and Lin, Joe and Wu, Wayne and Zhou, Bolei},
+    journal={arXiv preprint arXiv:2410.07500},
+    year={2024}
+}
+</pre>
+
+  <!-- BZ: we should give other related work enough credits, -->
+  <!--     so please include some most relevant work and leave some comment to summarize work and the difference. -->
+  <div class="ref">Related Work</div>
+  <div class="citation">
+    <div class="image"><img src="assets/wham.png"></div>
+    <div class="comment">
+      <a href="https://wham.is.tue.mpg.de/" target="_blank">
+        Soyong Shin, Juyong Kim, Eni Halilaj, Michael J. Black.
+        WHAM: Reconstructing World-grounded Humans with Accurate 3D Motion.
+        CVPR 2024.</a><br>
+      <b>Comment:</b>
+      State-of-the-art for 4D human motion estimation from in-the-wild videos. We use it to extract pedestrian movement pseudo-lables for CityWalkers. 
+    </div>
+  </div>
+  <div class="citation">
+    <div class="image"><img src="assets/trafficgen.png"></div>
+    <div class="comment">
+      <a href="https://metadriverse.github.io/trafficgen/" target="_blank">
+        Lan Feng, Quanyi Li, Zhenghao Peng, Shuhan Tan, Bolei Zhou.
+        TrafficGen: Learning to Generate Diverse and Realistic Traffic Scenarios.
+        ICRA 2023.</a><br>
+      <b>Comment:</b>
+       This work can generate realistic traffic scenarios from real-world data, which can be combined with PedGen to simulate urban environments.
+    </div>
+  </div>
+</div>
+<!-- === Reference Section Ends === -->
+
+
+</body>
+</html>
