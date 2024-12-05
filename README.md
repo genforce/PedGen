@@ -11,7 +11,7 @@
 
  ## Getting Started
 
- Dataset and code will be released soon, please stay tuned!
+ The dataset and code will be released soon, please stay tuned!
 
 
  ## Contact
