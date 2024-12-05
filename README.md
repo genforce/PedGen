@@ -11,7 +11,7 @@
 
  ## Getting Started
 
- We plan to release our dataset and code by the end of November 2024, please stay tuned!
+ Dataset and code will be released soon, please stay tuned!
 
 
  ## Contact
