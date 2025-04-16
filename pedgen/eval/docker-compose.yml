@@ -1,0 +1,12 @@
+services:
+  carla0:
+    image: carlasim/carla:0.9.15
+    command: bash -c "cd PythonAPI/util && python3 config.py --no-rendering && cd ../../ && ./CarlaUE4.sh -RenderOffScreen -carla-port=2000 -world-port=2000"
+    runtime: nvidia
+    ports:
+      - "2000-2002:2000-2002"
+    environment:
+      - DISPLAY=$DISPLAY
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=graphics,utility,display,video,compute
+    privileged: true

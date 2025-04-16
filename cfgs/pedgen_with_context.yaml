@@ -1,0 +1,84 @@
+seed_everything: true
+exp_root: experiments
+exp_name: pedgen
+version: with_context
+trainer:
+  accelerator: gpu
+  strategy: auto
+  devices: 1
+  precision: 32
+  max_epochs: 500
+  check_val_every_n_epoch: 50
+  num_sanity_val_steps: 3
+  log_every_n_steps: 50
+  gradient_clip_val: 1.0
+  profiler: simple
+  default_root_dir: ${exp_root}/${exp_name}/${version}
+  logger: 
+  - class_path: WandbLogger
+    init_args:
+      project: PedGen
+      name: ${exp_name}_${version}
+      save_dir: ${trainer.default_root_dir}
+  callbacks: 
+  - class_path: ModelCheckpoint
+    init_args:
+      save_last: True
+      save_on_train_epoch_end: True
+      dirpath: ${trainer.default_root_dir}/ckpts
+  - class_path: LearningRateMonitor
+    init_args:
+      logging_interval: step
+  - class_path: pedgen.utils.vis.PedGenVisCallback
+    init_args:
+      vis_num: 
+        val: 2
+        test: 10000
+        pred: 10000
+      store_result: 
+        val: False
+        test: True
+        pred: True
+      vis_image: True
+      vis_video: False
+
+
+model:
+  batch_size_per_device: 64
+  gpus: ${trainer.devices}
+  noise_steps: 1000
+  ddim_timesteps: 100
+  mod_train: 0.8
+  use_goal: True
+  use_image: True
+  use_beta: True
+  num_sample: 1
+  diffuser_conf:
+    input_feats: 147
+    num_frames: 60
+    num_layers: 8
+    num_heads: 8
+    latent_dim: 512
+    dropout: 0.2
+  optimizer_conf:
+    basic_lr_per_img: 1.5625e-6
+  lr_scheduler_conf:
+    milestones: [75, 150, 225, 275, 350, 450]
+    gamma: 0.9
+
+data:
+  train_label_file: train.pkl
+  val_label_file: val.pkl
+  test_label_file: val.pkl
+  batch_size_per_device: ${model.batch_size_per_device}
+  num_workers: 8
+  data_root: data
+  img_dim: [518, 518]
+  img_root: image
+  num_timestamp: 60
+  min_timestamp: 10
+  use_partial: True
+  grid_size: [-4, 4, -2, 2, -4, 4]
+  grid_points: [40, 40, 40]
+  
+ckpt_path: null
