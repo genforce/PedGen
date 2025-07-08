@@ -25,6 +25,9 @@ Download checkpoints at this [link](https://drive.google.com/drive/folders/1JZAq
 - `pedgen_no_context.ckpt`, PedGen model without context factors. 
 - `pedgen_with_context.ckpt`, PedGen model with all context factors (scene, human, goal).
 
+
+Download SMPL body models (SMPL_MALE.pkl, SMPL_FEMALE.pkl, SMPL_NEUTRAL.pkl) at this [link](https://smpl.is.tue.mpg.de/index.html) in `smpl` folder.
+
 Run Demo:
 ```
 python scripts/demo.py

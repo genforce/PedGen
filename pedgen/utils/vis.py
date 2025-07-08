@@ -33,8 +33,6 @@ class PedGenVisCallback(Callback):
         self.smpl = SMPLLayer(model_path="smpl", gender='neutral')
         if self.vis_image or self.vis_video:
             self.smpl = SMPLLayer(model_path="smpl", gender='neutral')
-            texture_file = np.load("smpl/texture.npz")
-            self.faces_cpu = texture_file['smpl_faces'].astype('uint32')
             self.colors = get_colors()
 
         super(PedGenVisCallback).__init__()
@@ -245,7 +243,7 @@ class PedGenVisCallback(Callback):
                     focal_length=[intrisics[0, 0], intrisics[1, 1]],
                     camera_center=[intrisics[0, 2], intrisics[1, 2]],
                     img_res=[1280, 720],
-                    faces=self.faces_cpu,
+                    faces=self.smpl.faces,
                     metallicFactor=0.0,
                     roughnessFactor=0.7)
 

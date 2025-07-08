@@ -162,8 +162,6 @@ pred = model.predict_step(batch)
 pred = {k: pred[k].cpu() for k in pred}
 
 smpl = SMPLLayer(model_path="smpl", gender='neutral')
-texture_file = np.load("smpl/texture.npz")
-faces_cpu = texture_file['smpl_faces'].astype('uint32')
 colors = get_colors()
 
 
@@ -235,7 +233,7 @@ for i in range(B):
     render = Renderer(focal_length=[intrisics[0, 0], intrisics[1, 1]],
                       camera_center=[intrisics[0, 2], intrisics[1, 2]],
                       img_res=[W, H],
-                      faces=faces_cpu,
+                      faces=smpl.faces,
                       metallicFactor=0.0,
                       roughnessFactor=0.7)
 
