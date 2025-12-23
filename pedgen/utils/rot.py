@@ -72,8 +72,6 @@ def create_occupancy_grid(points_3d,
         occupancy_grid[indices[:, 0], indices[:, 1],
                        indices[:, 2]] = points_3d[:, 3]
 
-    occupancy_grid = occupancy_grid.permute(0, 2, 1)
-
     return occupancy_grid
 
 

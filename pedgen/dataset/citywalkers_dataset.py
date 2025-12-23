@@ -373,7 +373,8 @@ class CityWalkersDataset(Dataset):
                 grid_2d = tt(
                     create_2d_grid(num_points=self.grid_points,
                                    grid_size=self.grid_size))
-
+                
+                # (x,y,z)->(x,z,y) as y is the height axis
                 occupancy_grid = occupancy_grid.permute(0, 2, 1)
                 occupancy_grid = torch.cat([occupancy_grid, grid_2d], dim=-1)
 
